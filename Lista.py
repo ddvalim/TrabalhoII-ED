@@ -36,7 +36,12 @@ class Lista:
     
 
     def consulta_por_posicao(self, posicao:int):
-        return
+        i = self.__primeiro_elemento
+        
+        for x in range(posicao):
+            i = i.get_proximo()
+        
+        return i.get_numero()
 
     # OPERACOES SOBRE O CURSOR
 
