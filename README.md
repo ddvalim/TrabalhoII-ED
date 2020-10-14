@@ -2,7 +2,7 @@
 <p align="center">🚀 Trabalho de ESTRUTURA DE DADOS - INE5609 🚀</p>
 <p align="center">
  <a href="#tecnologias">Tecnologia</a> • 
- <a href="#autor">Autor</a>
+ <a href="#autor">Autores</a>
 </p>
 
 <h1 align="center"> 
