@@ -32,7 +32,7 @@ class Lista:
                         
                 return True
         else:
-            raise Exception('O parâmetro passado não é da classe Elemento!')
+            raise Exception(f'O parâmetro {elemento} não é da classe Elemento!')
     
 
     def consulta_por_posicao(self, posicao:int):
@@ -47,10 +47,12 @@ class Lista:
 
     def ir_para_inicio(self):
         self.__cursor = self.__primeiro_elemento
+        return self.__cursor
     
 
     def ir_para_final(self):
         self.__cursor = self.__ultimo_elemento
+        return self.__cursor
     
 
     def avancar_cursor(self, k:int):
@@ -75,39 +77,61 @@ class Lista:
     
 
     def inserir_apos_atual(self, elemento:object):
-        if isinstance(elemento, Elemento):
-            if self.lista_cheia() == False:
-                prox = self.__cursor.get_proximo()
-                self.__cursor.set_proximo(elemento)
-                prox.set_anterior(elemento)
-
-                elemento.set_anterior(self.__cursor)
-                elemento.set_proximo(prox)
-
-                self.__numero_elementos += 1
-                return ('Operação concluída com sucesso!')
-            else:
-                raise Exception('Lista cheia!')
+        if self.lista_vazia() == True:
+            raise Exception('A lista está vazia e deve ser inicializada!')
         else:
-            raise Exception('O parâmetro passado não é do tipo Elemento!')
+            if isinstance(elemento, Elemento):
+                if self.lista_cheia() == False:
+                    if self.__cursor == self.__ultimo_elemento:
+                        self.__cursor.set_proximo(elemento)
+                        elemento.set_anterior(self.__cursor)
+
+                        self.__ultimo_elemento = elemento
+                        self.__numero_elementos += 1
+                        return (f'Elemento {elemento} inserido com sucesso')
+                    else:
+                        prox = self.__cursor.get_proximo()
+                        self.__cursor.set_proximo(elemento)
+                        prox.set_anterior(elemento)
+
+                        elemento.set_anterior(self.__cursor)
+                        elemento.set_proximo(prox)
+
+                        self.__numero_elementos += 1
+                        return (f'Elemento {elemento} inserido com sucesso!')
+                else:
+                    raise Exception('Lista cheia!')
+            else:
+                raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
     
 
     def inserir_antes_atual(self, elemento:object):
-        if isinstance(elemento, Elemento):
-            if self.lista_cheia() == False:
-                anterior = self.__cursor.get_anterior()
-                self.__cursor.set_anterior(elemento)
-                anterior.set_proximo(elemento)
-
-                elemento.set_anterior(anterior)
-                elemento.set_proximo(self.__cursor)
-
-                self.__numero_elementos += 1
-                return ('Operação concluída com sucesso!')
-            else:
-                raise Exception('Lista cheia!')
+        if self.lista_vazia() == True:
+            raise Exception('A lista está vazia e deve ser inicializada!')
         else:
-            raise Exception('O parâmetro passado não é do tipo Elemento!')
+            if isinstance(elemento, Elemento):
+                if self.lista_cheia() == False:
+                    if self.__cursor == self.__primeiro_elemento:
+                        elemento.set_proximo(self.__cursor)
+                        self.__cursor.set_anterior(elemento)
+
+                        self.__primeiro_elemento = elemento
+                        self.__numero_elementos += 1
+                        return (f'Elemento {elemento} inserido com sucesso!')
+                    else:
+                        anterior = self.__cursor.get_anterior()
+                        self.__cursor.set_anterior(elemento)
+                        anterior.set_proximo(elemento)
+
+                        elemento.set_anterior(anterior)
+                        elemento.set_proximo(self.__cursor)
+
+                        self.__numero_elementos += 1
+                        return (f'Elemento {elemento} inserido com sucesso!')
+                else:
+                    raise Exception('Lista cheia!')
+            else:
+                raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
 
 
     def excluir_atual(self):
@@ -120,3 +144,63 @@ class Lista:
         self.__cursor = self.__primeiro_elemento
 
         return ('Operação concluída com sucesso!')
+
+
+    def inserir_no_fim(self, elemento: object):
+        if isinstance(elemento, Elemento):
+            if self.lista_vazia == True:
+                raise Exception('A lista está vazia e deve ser inicializada!')
+            else:
+                if self.lista_cheia() != True:
+                    c = self.ir_para_final()
+                    elemento.set_anterior(c)
+                    c.set_proximo(elemento)
+                    self.__ultimo_elemento = elemento
+                    self.__numero_elementos += 1
+                    return (f'Elemento {elemento} inserido com sucesso!')
+                else:
+                    raise Exception('Lista cheia, impossível adicionar novo elemento')
+        else:
+            raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
+
+
+    def inserir_na_frente(self, elemento: object): #METODO INICIALIZADOR
+        if isinstance(elemento, Elemento):
+            if self.lista_vazia == True:
+                self.__primeiro_elemento = elemento
+                self.__ultimo_elemento = elemento
+                self.__cursor = elemento
+            else:
+                if self.lista_cheia() != False:
+                    c = self.ir_para_inicio()
+                    elemento.set_proximo(c)
+                    c.set_anterior(elemento)
+                    self.__primeiro_elemento = elemento
+                    self.__numero_elementos += 1
+                    return (f'Elemento {elemento} inserido com sucesso!')
+        else:
+            raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
+
+
+    def inserir_na_posicao(self, posicao: int, elemento: object):
+        if isinstance(elemento, Elemento):
+            if self.lista_vazia() == True:
+                raise Exception('A lista está vazia e deve ser inicializada!')
+            else:
+                self.ir_para_inicio()
+                contador = int(posicao) - 1
+                self.avancar_cursor(contador)
+
+                anterior = self.__cursor.get_anterior()
+                anterior.set_proximo(elemento)
+                self.__cursor.set_anterior(elemento)
+
+                elemento.set_anterior(anterior)
+                elemento.set_proximo(self.__cursor)
+            
+                self.__cursor = elemento
+                self.__numero_elementos += 1
+
+                return (f'O elemento {elemento} foi inserido na posição {posicao} com sucesso!')
+        else:
+            raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
