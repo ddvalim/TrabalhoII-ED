@@ -14,6 +14,6 @@
 
 O trabalho foi desenvolvido utilizando a linguagem Python e a técnica de duplo encadeamento com alocação dinâmica e o uso de um cursor.
 
-### Autor
+### Autores
 
-A autora do projeto é Diovana Rodrigues Valim, graduanda da terceira fase de Sistemas de Informação na Universidade Federal de Santa Catarina. O trabalho foi desenvolvido para avaliação na disciplina INE5609 - Estrutura de Dados
+Os autores do projeto são Diovana Rodrigues Valim e Gabriel Aristeu Cabral, graduandos da terceira fase de Sistemas de Informação na Universidade Federal de Santa Catarina. O trabalho foi desenvolvido para avaliação na disciplina INE5609 - Estrutura de Dados
