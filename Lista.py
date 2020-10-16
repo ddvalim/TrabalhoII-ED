@@ -189,7 +189,7 @@ class Lista:
             if self.lista_vazia() == True:
                 raise Exception('A lista está vazia e deve ser inicializada!')
             else:
-                if self.lista_cheia != True:
+                if self.lista_cheia() != True:
                     self.ir_para_inicio()
                     contador = (int(posicao) - 1)
                     self.avancar_cursor(contador)
