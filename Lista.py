@@ -166,7 +166,7 @@ class Lista:
 
     def inserir_na_frente(self, elemento: object): #METODO INICIALIZADOR
         if isinstance(elemento, Elemento):
-            if self.lista_vazia == True:
+            if self.lista_vazia() == True:
                 self.__primeiro_elemento = elemento
                 self.__ultimo_elemento = elemento
                 self.__cursor = elemento
