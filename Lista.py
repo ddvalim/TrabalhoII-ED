@@ -18,7 +18,7 @@ class Lista:
         return self.__limite == self.__numero_elementos
 
 
-    def contem_elemento(self, elemento:object):
+    def contem_elemento(self, elemento:Elemento):
         if isinstance(elemento, Elemento):
             if elemento == self.__primeiro_elemento or elemento == self.__ultimo_elemento:
                 return True
@@ -38,7 +38,7 @@ class Lista:
     def consulta_por_posicao(self, posicao:int):
         i = self.__primeiro_elemento
         
-        for x in range(posicao):
+        for _ in range(posicao):
             i = i.get_proximo()
         
         return i.get_numero()
@@ -66,8 +66,8 @@ class Lista:
             raise Exception('A lista está vazia e deve ser inicializada!')
         else:
             for i in range(k):
-                temp = self.__cursor.get_proximo()
-                self.__cursor = temp
+                self.__cursor = self.__cursor.get_proximo()
+                
         
             return self.__cursor
     
@@ -88,7 +88,7 @@ class Lista:
         return self.__cursor
     
 
-    def inserir_apos_atual(self, elemento:object):
+    def inserir_apos_atual(self, elemento:Elemento):
         if self.lista_vazia() == True:
             raise Exception('A lista está vazia e deve ser inicializada!')
         else:
@@ -117,7 +117,7 @@ class Lista:
                 raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
     
 
-    def inserir_antes_atual(self, elemento:object):
+    def inserir_antes_atual(self, elemento:Elemento):
         if self.lista_vazia() == True:
             raise Exception('A lista está vazia e deve ser inicializada!')
         else:
@@ -158,7 +158,7 @@ class Lista:
         return ('Operação concluída com sucesso!')
 
 
-    def inserir_no_fim(self, elemento: object):
+    def inserir_no_fim(self, elemento: Elemento):
         if isinstance(elemento, Elemento):
             if self.lista_vazia == True:
                 raise Exception('A lista está vazia e deve ser inicializada!')
@@ -176,7 +176,7 @@ class Lista:
             raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
 
 
-    def inserir_na_frente(self, elemento: object): #METODO INICIALIZADOR
+    def inserir_na_frente(self, elemento: Elemento): #METODO INICIALIZADOR
         if isinstance(elemento, Elemento):
             if self.lista_vazia() == True:
                 self.__primeiro_elemento = elemento
@@ -196,7 +196,7 @@ class Lista:
             raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
 
 
-    def inserir_na_posicao(self, posicao: int, elemento: object):
+    def inserir_na_posicao(self, posicao: int, elemento: Elemento):
         if isinstance(elemento, Elemento):
             if self.lista_vazia() == True:
                 raise Exception('A lista está vazia e deve ser inicializada!')
@@ -220,3 +220,56 @@ class Lista:
                     raise Exception('Lista cheia, impossível adicionar novo elemento!')
         else:
             raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
+
+    def excluir_item(self, elemento: Elemento):
+        ant = elemento.get_anterior()
+        prox = elemento.get_proximo()
+        if prox is not None:
+            prox.set_anterior(ant)
+        if ant is not None:
+            ant.set_proximo(prox)
+        del elemento
+ 
+    def excluir_primeiro(self):
+        self.ir_para_inicio()
+        self.__primeiro_elemento = self.__cursor.get_proximo()
+        self.excluir_item(self.__cursor)
+        self.ir_para_inicio()
+ 
+ 
+    def excluir_ultimo(self):
+        self.ir_para_final()
+        self.__ultimo_elemento = self.__cursor.get_anterior()
+        self.excluir_item(self.__cursor)
+        self.ir_para_final()
+ 
+    def excluir_valor
+
+    def excluir_da_posicao(self, k: int):
+        self.ir_para_inicio()
+        if k > self.__numero_elementos:
+            raise Exception(f'A posição {k} é maior do que o tamanho da lista')
+        elif k == 0:
+            self.excluir_primeiro()
+        elif k == self.__numero_elementos:
+            self.excluir_ultimo()
+        else: 
+            for k in range(k):
+                self.avancar_cursor(1)
+            self.excluir_item(self.__cursor)
+            self._ir_para_inicio()
+
+
+
+    def buscar(self, valor):
+        if(self.__primeiro_elemento.__numero == valor or self.__ultimo_elemento.__numero == valor):
+            return True
+        
+        self.ir_para_inicio()
+        while True: 
+            self.avancar_cursor(1)
+            atual = self.acessar_atual().__numero
+            if atual == self.__ultimo_elemento:
+                return atual == valor
+            elif atual == valor:
+                return True

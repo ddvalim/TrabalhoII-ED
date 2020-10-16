@@ -5,11 +5,11 @@ class Elemento:
         self.__proximo = None
 
 
-    def set_proximo(self, element:object):
+    def set_proximo(self, element:Elemento):
         self.__proximo = element
 
     
-    def set_anterior(self, element:object):
+    def set_anterior(self, element:Elemento):
         self.__anterior = element
     
 
