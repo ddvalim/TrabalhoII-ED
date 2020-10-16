@@ -171,7 +171,7 @@ class Lista:
                 self.__ultimo_elemento = elemento
                 self.__cursor = elemento
             else:
-                if self.lista_cheia() != False:
+                if self.lista_cheia() != True:
                     c = self.ir_para_inicio()
                     elemento.set_proximo(c)
                     c.set_anterior(elemento)
@@ -189,20 +189,22 @@ class Lista:
             if self.lista_vazia() == True:
                 raise Exception('A lista está vazia e deve ser inicializada!')
             else:
-                self.ir_para_inicio()
-                contador = int(posicao) - 1
-                self.avancar_cursor(contador)
+                if self.lista_cheia != True:
+                    self.ir_para_inicio()
+                    contador = (int(posicao) - 1)
+                    self.avancar_cursor(contador)
 
-                anterior = self.__cursor.get_anterior()
-                anterior.set_proximo(elemento)
-                self.__cursor.set_anterior(elemento)
+                    anterior = self.__cursor.get_anterior()
+                    anterior.set_proximo(elemento)
+                    self.__cursor.set_anterior(elemento)
 
-                elemento.set_anterior(anterior)
-                elemento.set_proximo(self.__cursor)
+                    elemento.set_anterior(anterior)
+                    elemento.set_proximo(self.__cursor)
             
-                self.__cursor = elemento
-                self.__numero_elementos += 1
-
-                return (f'O elemento {elemento} foi inserido na posição {posicao} com sucesso!')
+                    self.__cursor = elemento
+                    self.__numero_elementos += 1
+                    return (f'O elemento {elemento} foi inserido na posição {posicao} com sucesso!')
+                else:
+                    raise Exception('Lista cheia, impossível adicionar novo elemento!')
         else:
             raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
