@@ -82,7 +82,7 @@ class Lista:
         
             return self.__cursor
 
-    # OPERACOES SOBRE A ESTRUTURA
+    # OPERACOES SOBRE ESTRUTURA
 
     def acessar_atual(self):
         return self.__cursor
