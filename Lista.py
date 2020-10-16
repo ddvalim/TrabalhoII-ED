@@ -46,29 +46,41 @@ class Lista:
     # OPERACOES SOBRE O CURSOR
 
     def ir_para_inicio(self):
-        self.__cursor = self.__primeiro_elemento
-        return self.__cursor
+        if self.__cursor == None:
+            raise Exception('A lista está vazia e deve ser inicializada!')
+        else:
+            self.__cursor = self.__primeiro_elemento
+            return self.__cursor
     
 
     def ir_para_final(self):
-        self.__cursor = self.__ultimo_elemento
-        return self.__cursor
+        if self.__cursor == None:
+            raise Exception('A lista está vazia e deve ser inicializada!')
+        else:
+            self.__cursor = self.__ultimo_elemento
+            return self.__cursor
     
 
     def avancar_cursor(self, k:int):
-        for i in range(k):
-            temp = self.__cursor.get_proximo()
-            self.__cursor = temp
+        if self.__cursor == None:
+            raise Exception('A lista está vazia e deve ser inicializada!')
+        else:
+            for i in range(k):
+                temp = self.__cursor.get_proximo()
+                self.__cursor = temp
         
-        return self.__cursor
+            return self.__cursor
     
 
     def retroceder_cursor(self, k:int):
-        for i in range(k):
-            temp = self.__cursor.get_anterior()
-            self.__cursor = temp
+        if self.__cursor == None:
+            raise Exception('A lista está vazia e deve ser inicializada!')
+        else:
+            for i in range(k):
+                temp = self.__cursor.get_anterior()
+                self.__cursor = temp
         
-        return self.__cursor
+            return self.__cursor
 
     # OPERACOES SOBRE A ESTRUTURA
 
