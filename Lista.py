@@ -18,18 +18,6 @@ class Lista:
         return self.__limite == self.__numero_elementos
 
 
-    def contem_elemento(self, value:int):
-        elemento = Elemento(int(value))
-        if value == self.__primeiro_elemento.get_numero() or value == self.__ultimo_elemento.get_numero():
-            return True
-        else:
-            i = self.__primeiro_elemento
-            while i.get_numero() != value:
-                i = i.get_proximo()
-                        
-            return i == value
-    
-
     def consulta_por_posicao(self, posicao:int):
         i = self.__primeiro_elemento
         
