@@ -178,6 +178,8 @@ class Lista:
                     self.__primeiro_elemento = elemento
                     self.__numero_elementos += 1
                     return (f'Elemento {elemento} inserido com sucesso!')
+                else:
+                    raise Exception('Lista cheia, impossível adicionar novo elemento!')
         else:
             raise Exception(f'O parâmetro {elemento} não é do tipo Elemento!')
 
