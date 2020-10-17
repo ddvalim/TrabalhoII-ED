@@ -81,7 +81,7 @@ class Lista:
 
     def inserir_apos_atual(self, value:int):
         if self.__cursor == self.__ultimo_elemento:
-            self.inserir_no_fim()
+            self.inserir_no_fim(value)
             return
         else:
             self.valida_lista_inclusao()
@@ -93,6 +93,7 @@ class Lista:
             elemento.set_anterior(self.__cursor)
             elemento.set_proximo(prox)
             self.__numero_elementos += 1
+            self.__cursor = elemento
             print(f'Elemento {value} inserido com sucesso!')
         
 
@@ -111,6 +112,7 @@ class Lista:
             elemento.set_anterior(anterior)
             elemento.set_proximo(self.__cursor)
             self.__numero_elementos += 1
+            self.__cursor = elemento
             print(f'Elemento {value} inserido com sucesso!')
          
 
@@ -125,7 +127,7 @@ class Lista:
 
         self.__cursor = self.__primeiro_elemento
 
-        return ('Operação concluída com sucesso!')
+        print('Operação concluída com sucesso!')
 
 
     def inserir_no_fim(self, value: int):
@@ -136,7 +138,8 @@ class Lista:
         self.__cursor.set_proximo(elemento)
         self.__ultimo_elemento = elemento
         self.__numero_elementos += 1
-        print(f'Elemento {elemento} inserido com sucesso!')
+        self.__cursor = elemento
+        print(f'Elemento {value} inserido com sucesso!')
                 
 
 
@@ -152,7 +155,7 @@ class Lista:
             elemento.set_proximo(self.__cursor)
             self.__cursor.set_anterior(elemento)
             self.__primeiro_elemento = elemento
-            self.__numero_elementos += 1
+        self.__numero_elementos += 1
         print(f'Elemento {value} inserido com sucesso!')
             
 
@@ -197,7 +200,15 @@ class Lista:
         self.excluir_item(self.__cursor)
         self.ir_para_final()
  
-    def excluir_valor
+    def excluir_valor(self, value:int ):
+        self.inserir_no_fim(None)
+        self.ir_para_inicio()
+        while self.__cursor != self.__ultimo_elemento:
+            if self.__cursor.get_valor() == value:
+                self.excluir_item(self.__cursor)
+                break
+            self.avancar_cursor()
+        self.excluir_ultimo()
 
     def excluir_da_posicao(self, k: int):
         self.ir_para_inicio()
@@ -216,14 +227,14 @@ class Lista:
 
 
     def buscar(self, valor):
-        if(self.__primeiro_elemento.__numero == valor or self.__ultimo_elemento.__numero == valor):
+        if(self.__primeiro_elemento.get_valor() == valor or self.__ultimo_elemento.get_valor() == valor):
             return True
         
         self.ir_para_inicio()
         while True: 
             self.avancar_cursor(1)
-            atual = self.acessar_atual().__numero
+            atual = self.acessar_atual()
             if atual == self.__ultimo_elemento:
-                return atual == valor
-            elif atual == valor:
+                return atual.get_valor() == valor
+            elif atual.get_valor() == valor:
                 return True
