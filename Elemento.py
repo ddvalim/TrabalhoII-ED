@@ -1,15 +1,17 @@
 class Elemento:
-    def __init__(self, numero):
-        self.__numero = numero
+    def __init__(self, valor):
+        self.__valor = valor
         self.__anterior = None
         self.__proximo = None
 
 
-    def set_proximo(self, element:Elemento):
+    def set_proximo(self, element:object):
         self.__proximo = element
 
-    
-    def set_anterior(self, element:Elemento):
+    def get_valor(self):
+        return self.__valor
+
+    def set_anterior(self, element:object):
         self.__anterior = element
     
 
