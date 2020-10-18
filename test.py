@@ -67,13 +67,11 @@ l.excluir_ultimo()
 print('Garantir atualização do cursor:')
 print(l.acessar_atual().get_valor()) #CURSOR DEVE ATUALIZAR A NOVA ULTIMA POSICAO
 
-'''
----> CODIGO BUGADO <---
 l.excluir_valor(13)
 print('Garantir atualização do cursor:')
 print(l.acessar_atual().get_valor())
 
-'''
+
 l.excluir_da_posicao(2)
 print('Garantir atualização do cursor:')
 print(l.acessar_atual().get_valor())

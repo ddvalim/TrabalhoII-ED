@@ -191,6 +191,7 @@ class Lista:
         if ant is not None:
             ant.set_proximo(prox)
         del elemento
+        self.__numero_elementos -= 1
  
 
     def excluir_primeiro(self):
@@ -208,15 +209,14 @@ class Lista:
  
 
     def excluir_valor(self, value:int ):
-        self.inserir_no_fim(None)
         self.ir_para_inicio()
-        while self.__cursor != self.__ultimo_elemento:
+        while self.__cursor != self.__ultimo_elemento.get_proximo():
             if self.__cursor.get_valor() == value:
                 self.excluir_item(self.__cursor)
+                self.__cursor = self.__cursor.get_anterior()
                 break
-            self.avancar_cursor()
-        self.excluir_ultimo()
-        self.ir_para_inicio()
+            self.avancar_cursor(1)
+
 
 
     def excluir_da_posicao(self, k: int):
