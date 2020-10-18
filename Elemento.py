@@ -8,9 +8,11 @@ class Elemento:
     def set_proximo(self, element:object):
         self.__proximo = element
 
+        
     def get_valor(self):
         return self.__valor
 
+    
     def set_anterior(self, element:object):
         self.__anterior = element
     
