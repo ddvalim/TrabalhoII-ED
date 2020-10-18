@@ -29,10 +29,10 @@ class Lista:
     def consulta_por_posicao(self, posicao:int):
         i = self.__primeiro_elemento
         
-        for x in range(posicao-1):
+        for x in range(posicao):
             i = i.get_proximo()
         
-        return i.get_numero()
+        return i.get_valor()
 
     # OPERACOES SOBRE O CURSOR
 
@@ -158,21 +158,29 @@ class Lista:
     def inserir_na_posicao(self, posicao: int, value:int):
         self.valida_lista_inclusao()
         elemento = Elemento(int(value))
-        
+
         self.ir_para_inicio()
-        contador = (int(posicao) - 1)
-        self.avancar_cursor(contador)
+        
+        if posicao == 0:
+            self.__cursor.set_anterior(elemento)
+            elemento.set_proximo(self.__cursor)
+            self.__primeiro_elemento = elemento
+            self.ir_para_inicio()
+        else:
+            contador = (int(posicao))
+            self.avancar_cursor(contador)
 
-        anterior = self.__cursor.get_anterior()
-        anterior.set_proximo(elemento)
-        self.__cursor.set_anterior(elemento)
+            anterior = self.__cursor.get_anterior()
+            anterior.set_proximo(elemento)
+            self.__cursor.set_anterior(elemento)
 
-        elemento.set_anterior(anterior)
-        elemento.set_proximo(self.__cursor)
+            elemento.set_anterior(anterior)
+            elemento.set_proximo(self.__cursor)
     
-        self.__cursor = elemento
-        self.__numero_elementos += 1
-        print(f'O elemento {elemento} foi inserido na posição {posicao} com sucesso!')
+            self.__cursor = elemento
+            self.__numero_elementos += 1
+        
+        print(f'O elemento {value} foi inserido na posição {posicao} com sucesso!')
    
 
     def excluir_item(self, elemento: Elemento):
@@ -208,6 +216,7 @@ class Lista:
                 break
             self.avancar_cursor()
         self.excluir_ultimo()
+        self.ir_para_inicio()
 
 
     def excluir_da_posicao(self, k: int):
@@ -222,7 +231,7 @@ class Lista:
             for k in range(k):
                 self.avancar_cursor(1)
             self.excluir_item(self.__cursor)
-            self._ir_para_inicio()
+            self.ir_para_inicio()
 
 
 
