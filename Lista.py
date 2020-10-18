@@ -102,7 +102,6 @@ class Lista:
             self.inserir_na_frente(value)
             return
         else:
-            
             self.valida_lista_inclusao()
             elemento = Elemento(int(value))
             anterior = self.__cursor.get_anterior()
@@ -114,8 +113,6 @@ class Lista:
             self.__numero_elementos += 1
             self.__cursor = elemento
             print(f'Elemento {value} inserido com sucesso!')
-         
-
 
 
     def excluir_atual(self):
@@ -141,7 +138,6 @@ class Lista:
         self.__cursor = elemento
         print(f'Elemento {value} inserido com sucesso!')
                 
-
 
     def inserir_na_frente(self, value: int): #METODO INICIALIZADOR
         elemento = Elemento(int(value))
@@ -178,6 +174,7 @@ class Lista:
         self.__numero_elementos += 1
         print(f'O elemento {elemento} foi inserido na posição {posicao} com sucesso!')
    
+
     def excluir_item(self, elemento: Elemento):
         ant = elemento.get_anterior()
         prox = elemento.get_proximo()
@@ -187,6 +184,7 @@ class Lista:
             ant.set_proximo(prox)
         del elemento
  
+
     def excluir_primeiro(self):
         self.ir_para_inicio()
         self.__primeiro_elemento = self.__cursor.get_proximo()
@@ -200,6 +198,7 @@ class Lista:
         self.excluir_item(self.__cursor)
         self.ir_para_final()
  
+
     def excluir_valor(self, value:int ):
         self.inserir_no_fim(None)
         self.ir_para_inicio()
@@ -209,6 +208,7 @@ class Lista:
                 break
             self.avancar_cursor()
         self.excluir_ultimo()
+
 
     def excluir_da_posicao(self, k: int):
         self.ir_para_inicio()
