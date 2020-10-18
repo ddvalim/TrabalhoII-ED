@@ -13,7 +13,7 @@ class Elemento:
         return self.__valor
 
     
-    def set_anterior(self, element:Elemento):
+    def set_anterior(self, element:object):
         self.__anterior = element
     
 
